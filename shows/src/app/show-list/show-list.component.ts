@@ -41,7 +41,6 @@ export class ShowListComponent implements OnInit {
       .getData(environment.SHOWS_API)
       .subscribe((data: any) => {
         this.shows = data;
-        console.log(this.shows);
       });
   }
 
@@ -54,6 +53,7 @@ export class ShowListComponent implements OnInit {
   }
 
   getFamilyShows() {
+
     this.Family_shows = this.shows.filter((show: any) =>
       show.genres.includes('Family')
     );
@@ -97,7 +97,6 @@ export class ShowListComponent implements OnInit {
 
 
   detailNav(id:any){
-   console.log(id);
    this.router.navigate(['show/'+ id])
 
   }

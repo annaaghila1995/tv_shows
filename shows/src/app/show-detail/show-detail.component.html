@@ -1,1 +1,126 @@
-<p>show-detail works!</p>
+<nav style="margin-left:-19px"aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Show</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{showDetail.name}}</li>
+  </ol>
+</nav>
+
+<div class="col-md-12 ">
+
+
+  <div class="col-md-6 top-27">
+    <h2 style="color: black;">{{showDetail.name}}</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-2  top-27">
+      <div class="card card-style">
+        <img class="card-img" src="{{showDetail.image.medium}}">
+        <div class="card-body card-foot">
+          <p class="card-text">{{showDetail.name}}
+            <br />
+            <ng-template #t let-fill="fill">
+              <span class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+              </span>
+            </ng-template>
+
+            <ngb-rating style="margin-left: -10px !important;" [(rate)]="showDetail.rating['average']"
+              [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6  top-27">
+      <h6 style="color: #646060;" [innerHtml]="showDetail.summary"></h6>
+    </div>
+    <div class="col-md-4  top-27">
+      <div class="card card-shadow">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Show Info</h5>
+          <p class="card-subtitle mb-2 text-muted "><b class="col-black">Network :</b>
+            {{showDetail.network.country.name}}</p>
+          <p class="card-subtitle mb-2 text-muted"><b class="col-black">Language :</b> {{showDetail.language}}</p>
+          <p class="card-subtitle mb-2 text-muted"><b class="col-black">Status :</b> {{showDetail.status}}</p>
+          <p class="card-subtitle mb-2 text-muted"><b class="col-black">Show Type :</b> {{showDetail.type}}</p>
+          <p class="card-subtitle mb-2 text-muted"><b class="col-black">Official URL :</b> <a
+              style="word-wrap: break-all;"> {{showDetail.officialSite}}</a></p>
+          <p><b style="color: black;">Genres :</b> {{genre}} </p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 top-27">
+      <h4 class="col-black">Episodes</h4>
+      <br />
+      <div class="row ">
+
+        <table class="table table-striped" style="background-color: white;width:80%">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Air Date</th>
+              <th scope="col">Run time</th>
+              <th scope="col">Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let episode of paginateData">
+              <td>{{ episode.name }}</td>
+              <td>{{ episode.airdate }}</td>
+              <td>{{ episode.runtime }}</td>
+              <td>
+                <ng-template #t let-fill="fill">
+                  <span class="star" [class.full]="fill === 100">
+                    <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                  </span>
+                </ng-template>
+
+                <ngb-rating style="margin-left: -18px !important;" [(rate)]="episode.rating['average']"
+                  [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+            (pageChange)="getPaginatedData();">
+          </ngb-pagination>
+
+          <select class="custom-select" style="width: auto;word-wrap: break-all;" [(ngModel)]="pageSize"
+            (ngModelChange)="getPaginatedData();">
+            <option selected [ngValue]="10">10 items per page</option>
+            <option [ngValue]="20">20 items per page</option>
+            <option [ngValue]="30">30 items per page</option>
+          </select>
+        </div>
+      </div>
+
+      <h4 class="col-black">Cast</h4>
+      <br />
+      <div class="row">
+        <div class="col-md-2" *ngFor="let cast of initial_castDetail">
+          <div class="card card-style" style="width: 157px;">
+            <img class="card-img" style="width:120px;height:140px" src="{{cast.person.image.medium}}">
+            <div style="height:68px">
+              <p style="font-size: 12px;"><b class="col-black">{{cast.person.name}}</b></p>
+              <p style="font-size: 12px;margin-top: -18px;"> as</p>
+              <p style="font-size: 12px;margin-top: -18px;"> <b class="col-black"> {{cast.character.name}}</b>
+
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <button *ngIf="enableViewCastButton"type="button" (click)="viewMoreCast();" class="btn btn-light top-27"><b>View Full Cast List</b></button>
+
+    </div>
+  </div>
+</div>

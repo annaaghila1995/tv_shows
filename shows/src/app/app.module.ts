@@ -15,7 +15,7 @@ import { ShowDetailComponent } from './show-detail/show-detail.component';
   declarations: [
     AppComponent,
     ShowListComponent,
-    ShowDetailComponent,
+    ShowDetailComponent
   ],
   imports: [
     BrowserModule,
