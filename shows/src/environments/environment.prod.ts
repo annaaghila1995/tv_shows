@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+
+  SHOWS_API : "https://api.tvmaze.com/shows"
 };

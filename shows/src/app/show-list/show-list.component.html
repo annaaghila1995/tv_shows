@@ -1,1 +1,277 @@
-<p>show-list works!</p>
+<div class="col-md-6 top-27">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+    placeholder=" Search By Show Name">
+</div>
+<div class="col-md-12 top-27" (click)="collapse.toggle();getDramaShows();" >
+  <p class="collapsible">
+    <a [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      <b> Drama</b>
+    </a>
+  </p>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2" *ngFor="let item of Drama_shows |filter: searchText">
+            <div class="card card-style" >
+              <a style="cursor: pointer;" (click)="detailNav(item.id)"><img class="card-img" src="{{item.image.medium}}"></a>
+              <div class="card-body card-foot">
+                <p class="card-text">{{item.name}}
+                  <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+
+                  <ngb-rating style="margin-left: -18px !important;" [(rate)]="item.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 top-27" (click)="collapse_family.toggle();getFamilyShows();">
+  <p class="collapsible">
+    <a  [attr.aria-expanded]="!isCollapsed_family"
+      aria-controls="collapseExample">
+      <b> Family</b>
+    </a>
+  </p>
+  <div #collapse_family="ngbCollapse" [(ngbCollapse)]="isCollapsed_family">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2" *ngFor="let item of Family_shows |filter: searchText">
+            <div class="card card-style">
+              <a style="cursor: pointer;" (click)="detailNav(item.id)"><img class="card-img" src="{{item.image.medium}}"></a>
+              <div class="card-body card-foot">
+                <p class="card-text">{{item.name}}
+                  <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+
+                  <ngb-rating style="margin-left: -18px !important;" [(rate)]="item.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-12 top-27" (click)="collapse_romance.toggle();getRomanceShows();">
+  <p class="collapsible">
+    <a  [attr.aria-expanded]="!isCollapsed_romance"
+      aria-controls="collapseExample">
+      <b> Romance</b>
+    </a>
+  </p>
+  <div #collapse_romance="ngbCollapse" [(ngbCollapse)]="isCollapsed_romance">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2" *ngFor="let item of Romance_shows |filter: searchText">
+            <div class="card card-style">
+              <a style="cursor: pointer;" (click)="detailNav(item.id)"><img class="card-img" src="{{item.image.medium}}"></a>
+              <div class="card-body card-foot">
+                <p class="card-text">{{item.name}}
+                  <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+
+                  <ngb-rating style="margin-left: -18px !important;" [(rate)]="item.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 top-27" (click)="collapse_comedy.toggle();getComedyShows();">
+  <p class="collapsible">
+    <a  [attr.aria-expanded]="!isCollapsed_comedy"
+      aria-controls="collapseExample">
+      <b> Comedy</b>
+    </a>
+  </p>
+  <div #collapse_comedy="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2" *ngFor="let item of Comedy_shows |filter: searchText">
+            <div class="card card-style">
+              <a style="cursor: pointer;" (click)="detailNav(item.id)"> <img class="card-img" src="{{item.image.medium}}"></a>
+              <div class="card-body card-foot">
+                <p class="card-text">{{item.name}}
+                  <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+
+                  <ngb-rating style="margin-left: -18px !important;" [(rate)]="item.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-12 top-27" (click)="collapse_Fantasy.toggle();getFantasyShows();">
+  <p class="collapsible">
+    <a  [attr.aria-expanded]="!isCollapsed_fantasy"
+      aria-controls="collapseExample">
+      <b> Fantasy</b>
+    </a>
+  </p>
+  <div #collapse_Fantasy="ngbCollapse" [(ngbCollapse)]="isCollapsed_fantasy">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2" *ngFor="let item of Fantasy_shows |filter: searchText">
+            <div class="card card-style">
+              <a style="cursor: pointer;" (click)="detailNav(item.id)"> <img class="card-img" src="{{item.image.medium}}"></a>
+              <div class="card-body card-foot">
+                <p class="card-text">{{item.name}}
+                  <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+
+                  <ngb-rating style="margin-left: -18px !important;" [(rate)]="item.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 top-27"  (click)="collapse_Crime.toggle();getCrimeShows();">
+  <p class="collapsible">
+    <a [attr.aria-expanded]="!isCollapsed_crime"
+      aria-controls="collapseExample">
+      <b> Crime</b>
+    </a>
+  </p>
+  <div #collapse_Crime="ngbCollapse" [(ngbCollapse)]="isCollapsed_crime">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2" *ngFor="let item of Crime_shows |filter: searchText">
+            <div class="card card-style">
+              <a style="cursor: pointer;" (click)="detailNav(item.id)"> <img class="card-img" src="{{item.image.medium}}"></a>
+              <div class="card-body card-foot">
+                <p class="card-text">{{item.name}}
+                  <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+
+                  <ngb-rating style="margin-left: -18px !important;" [(rate)]="item.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 top-27"  (click)="collapse_Medical.toggle();getMedicalShows();">
+  <p class="collapsible">
+    <a [attr.aria-expanded]="!isCollapsed_medical"
+      aria-controls="collapseExample">
+      <b> Medical</b>
+    </a>
+  </p>
+  <div #collapse_Medical="ngbCollapse" [(ngbCollapse)]="isCollapsed_medical">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2" *ngFor="let item of Medical_shows |filter: searchText">
+            <div class="card card-style">
+              <a style="cursor: pointer;" (click)="detailNav(item.id)"> <img class="card-img" src="{{item.image.medium}}"></a>
+              <div class="card-body card-foot">
+                <p class="card-text">{{item.name}}
+                  <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+
+                  <ngb-rating style="margin-left: -18px !important;" [(rate)]="item.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 top-27" (click)="collapse_Legal.toggle();getLegalShows();">
+  <p class="collapsible">
+    <a  [attr.aria-expanded]="!isCollapsed_legal"
+      aria-controls="collapseExample">
+      <b> Legal</b>
+    </a>
+  </p>
+  <div #collapse_Legal="ngbCollapse" [(ngbCollapse)]="isCollapsed_legal">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2" *ngFor="let item of Legal_shows |filter: searchText">
+            <div class="card card-style">
+              <a style="cursor: pointer;" (click)="detailNav(item.id)"><img class="card-img" src="{{item.image.medium}}"></a>
+              <div class="card-body card-foot">
+                <p class="card-text">{{item.name}}
+                  <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                    </span>
+                  </ng-template>
+
+                  <ngb-rating style="margin-left: -18px !important;" [(rate)]="item.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
