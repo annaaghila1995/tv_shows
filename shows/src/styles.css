@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+.card-shadow{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+
+.card-foot{
+  height: 84px !important;
+  word-break: break-word !important;
+ }
+
+ .card-style{
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+   padding: 16px;
+   text-align: center;
+   background-color: #f1f1f1;
+ }
+
+ .star {
+   position: relative;
+   display: inline-block;
+   font-size:22px !important;
+   color: #d3d3d3;
+ }
+ .full {
+   color: rgb(193 51 19);;
+   font-size: 22px !important;
+ }
+ .half {
+   position: absolute;
+   display: inline-block;
+   overflow: hidden;
+   color: rgb(193 51 19);
+   font-size: 22px !important;
+ }
+ .col-black {
+  color: black;
+}
+
+.top-27{
+  margin-top: 27px !important;
+}

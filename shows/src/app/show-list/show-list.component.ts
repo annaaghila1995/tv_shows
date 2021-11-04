@@ -19,8 +19,10 @@ export class ShowListComponent implements OnInit {
   isCollapsed_comedy = true;
 
   shows: any = [];
+  searchShows : any =[];
   Drama_shows: any = [];
   searchText: any;
+  enableFilterData = false;
   Family_shows: any = [];
   Romance_shows: any = [];
   Comedy_shows: any = [];
@@ -53,7 +55,6 @@ export class ShowListComponent implements OnInit {
   }
 
   getFamilyShows() {
-
     this.Family_shows = this.shows.filter((show: any) =>
       show.genres.includes('Family')
     );
@@ -95,9 +96,28 @@ export class ShowListComponent implements OnInit {
     );
   }
 
-
-  detailNav(id:any){
-   this.router.navigate(['show/'+ id])
-
+  /**navigation to detail page */
+  detailNav(id: any) {
+    this.router.navigate(['show/' + id]);
   }
+
+   /**get api call with query parameters */
+  searchResult(event: any) {
+    if (event.target.value) {
+      console.log(event.target.value);
+
+      this.appHttpService
+        .getData(environment.SEARCH_SHOW_API + '?q=' + event.target.value)
+        .subscribe((data: any) => {
+          this.searchShows = data;
+          this.enableFilterData = true;
+
+        });
+    } else {
+      this.enableFilterData = false;
+      this.getFullShowData();
+    }
+  }
+
+
 }

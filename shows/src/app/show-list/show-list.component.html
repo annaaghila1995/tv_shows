@@ -1,7 +1,28 @@
 <div class="col-md-6 top-27">
-  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-    placeholder=" Search By Show Name">
+  <input class="form-control" (keyup.enter)="searchResult($event)" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+    placeholder="Search By Show Name and Person">
 </div>
+
+<div class="col-md-2 top-27" *ngIf="enableFilterData">
+  <div class="card card-style" >
+    <a style="cursor: pointer;" (click)="detailNav(searchShows.id)"><img class="card-img" src="{{searchShows.image.medium}}"></a>
+    <div class="card-body card-foot">
+      <p class="card-text">{{searchShows.name}}
+        <br/>
+        <ng-template #t let-fill="fill">
+          <span class="star" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+          </span>
+        </ng-template>
+
+        <ngb-rating style="margin-left: -18px !important;" [(rate)]="searchShows.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+
+      </p>
+
+    </div>
+  </div>
+</div>
+<div *ngIf="!enableFilterData">
 <div class="col-md-12 top-27" (click)="collapse.toggle();getDramaShows();" >
   <p class="collapsible">
     <a [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
@@ -12,7 +33,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2" *ngFor="let item of Drama_shows |filter: searchText">
+          <div class="col-md-2" *ngFor="let item of Drama_shows">
             <div class="card card-style" >
               <a style="cursor: pointer;" (click)="detailNav(item.id)"><img class="card-img" src="{{item.image.medium}}"></a>
               <div class="card-body card-foot">
@@ -48,7 +69,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2" *ngFor="let item of Family_shows |filter: searchText">
+          <div class="col-md-2" *ngFor="let item of Family_shows ">
             <div class="card card-style">
               <a style="cursor: pointer;" (click)="detailNav(item.id)"><img class="card-img" src="{{item.image.medium}}"></a>
               <div class="card-body card-foot">
@@ -84,7 +105,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2" *ngFor="let item of Romance_shows |filter: searchText">
+          <div class="col-md-2" *ngFor="let item of Romance_shows">
             <div class="card card-style">
               <a style="cursor: pointer;" (click)="detailNav(item.id)"><img class="card-img" src="{{item.image.medium}}"></a>
               <div class="card-body card-foot">
@@ -115,11 +136,11 @@
       <b> Comedy</b>
     </a>
   </p>
-  <div #collapse_comedy="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+  <div #collapse_comedy="ngbCollapse" [(ngbCollapse)]="isCollapsed_comedy">
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2" *ngFor="let item of Comedy_shows |filter: searchText">
+          <div class="col-md-2" *ngFor="let item of Comedy_shows">
             <div class="card card-style">
               <a style="cursor: pointer;" (click)="detailNav(item.id)"> <img class="card-img" src="{{item.image.medium}}"></a>
               <div class="card-body card-foot">
@@ -155,7 +176,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2" *ngFor="let item of Fantasy_shows |filter: searchText">
+          <div class="col-md-2" *ngFor="let item of Fantasy_shows">
             <div class="card card-style">
               <a style="cursor: pointer;" (click)="detailNav(item.id)"> <img class="card-img" src="{{item.image.medium}}"></a>
               <div class="card-body card-foot">
@@ -190,7 +211,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2" *ngFor="let item of Crime_shows |filter: searchText">
+          <div class="col-md-2" *ngFor="let item of Crime_shows ">
             <div class="card card-style">
               <a style="cursor: pointer;" (click)="detailNav(item.id)"> <img class="card-img" src="{{item.image.medium}}"></a>
               <div class="card-body card-foot">
@@ -225,7 +246,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2" *ngFor="let item of Medical_shows |filter: searchText">
+          <div class="col-md-2" *ngFor="let item of Medical_shows">
             <div class="card card-style">
               <a style="cursor: pointer;" (click)="detailNav(item.id)"> <img class="card-img" src="{{item.image.medium}}"></a>
               <div class="card-body card-foot">
@@ -260,7 +281,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2" *ngFor="let item of Legal_shows |filter: searchText">
+          <div class="col-md-2" *ngFor="let item of Legal_shows">
             <div class="card card-style">
               <a style="cursor: pointer;" (click)="detailNav(item.id)"><img class="card-img" src="{{item.image.medium}}"></a>
               <div class="card-body card-foot">
@@ -282,4 +303,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
