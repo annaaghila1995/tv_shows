@@ -2,12 +2,12 @@
   <input class="form-control" (keyup.enter)="searchResult($event)" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
     placeholder="Search By Show Name and Person">
 </div>
-
-<div class="col-md-2 top-27" *ngIf="enableFilterData">
+<div *ngIf="enableFilterData">
+<div class="col-md-2 top-27"  *ngFor="let searchShow of searchShows">
   <div class="card card-style" >
-    <a style="cursor: pointer;" (click)="detailNav(searchShows.id)"><img class="card-img" src="{{searchShows.image.medium}}"></a>
+    <a style="cursor: pointer;" (click)="detailNav(searchShow.id)"><img class="card-img" src="{{searchShow.image.medium}}"></a>
     <div class="card-body card-foot">
-      <p class="card-text">{{searchShows.name}}
+      <p class="card-text">{{searchShow.name}}
         <br/>
         <ng-template #t let-fill="fill">
           <span class="star" [class.full]="fill === 100">
@@ -15,12 +15,13 @@
           </span>
         </ng-template>
 
-        <ngb-rating style="margin-left: -18px !important;" [(rate)]="searchShows.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+        <ngb-rating style="margin-left: -18px !important;" [(rate)]="searchShow.rating['average']" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
 
       </p>
 
     </div>
   </div>
+</div>
 </div>
 <div *ngIf="!enableFilterData">
 <div class="col-md-12 top-27" (click)="collapse.toggle();getDramaShows();" >

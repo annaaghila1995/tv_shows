@@ -109,8 +109,14 @@ export class ShowListComponent implements OnInit {
       this.appHttpService
         .getData(environment.SEARCH_SHOW_API + '?q=' + event.target.value)
         .subscribe((data: any) => {
-          this.searchShows = data;
-          this.enableFilterData = true;
+          if(this.searchShows.length){
+            this.searchShows = data;
+            this.enableFilterData = true;
+          } else {
+            this.searchShows[0] = data;
+            this.enableFilterData = true;
+          }
+
 
         });
     } else {
