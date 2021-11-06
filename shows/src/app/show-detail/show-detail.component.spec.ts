@@ -11,7 +11,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 
-fdescribe('ShowDetailComponent', () => {
+describe('ShowDetailComponent', () => {
   let component: ShowDetailComponent;
   let fixture: ComponentFixture<ShowDetailComponent>;
   let service: AppHttpService;
