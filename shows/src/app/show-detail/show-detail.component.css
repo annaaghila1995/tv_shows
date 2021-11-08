@@ -1,3 +1,10 @@
 :host/deep/.card-style{
 background-color: #fffbfb;
 }
+
+:host/deep/.card-text{
+  font-size: 12px;
+  margin-top: -19px;
+  word-wrap: break-word !important;
+
+}

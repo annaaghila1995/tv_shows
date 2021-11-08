@@ -10,13 +10,17 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
-describe('ShowDetailComponent', () => {
+
+fdescribe('ShowDetailComponent', () => {
   let component: ShowDetailComponent;
   let fixture: ComponentFixture<ShowDetailComponent>;
   let service: AppHttpService;
   let httpTestingController: HttpTestingController;
   let route: ActivatedRoute;
+  let httpClient: HttpClient;
+
   let baseUrl = 'https://api.tvmaze.com/shows/1';
   let show = {
     id: 1,
@@ -159,26 +163,29 @@ describe('ShowDetailComponent', () => {
     route = TestBed.inject(ActivatedRoute);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
+    service = TestBed.inject(AppHttpService);
   });
 
   // it('should create', () => {
   //   expect(component).toBeTruthy();
   // });
-
+  afterEach(() => {
+    httpTestingController.verify(); //Verifies that no requests are outstanding.
+  });
   it('should return data', () => {
     let result: any = [];
 
-    service.getData(baseUrl).subscribe((t) => {
-      result = t;
-    });
-    const req = httpTestingController.expectOne({
-      method: 'GET',
-      url: baseUrl,
-    });
+    service.getData(baseUrl).subscribe(
+      emps => expect(emps).toEqual(show, 'should return expected employees'),
+      fail
+    );
 
-    req.flush([show]);
+    const req = httpTestingController.expectOne(baseUrl);
+    expect(req.request.method).toEqual('GET');
 
-    expect(result).toEqual(show);
+    req.flush(show)
   });
   // it('getDataByID test case ', () => {
   //   const spyRoute = spyOn(route.snapshot.paramMap, 'get');
@@ -227,14 +234,14 @@ describe('ShowDetailComponent', () => {
   //   expect(service.getData).toHaveBeenCalled();
   // });
 
-  it('getShowDetail function should return data', () => {
-    const service: AppHttpService =
-      fixture.debugElement.injector.get(AppHttpService);
-    spyOn(service, 'getData').and.callThrough();
-    component.ngOnInit();
-    expect(service.getData).toHaveBeenCalled();
-    expect(component.showDetail.length).toBe(1)
-  });
+  // it('getShowDetail function should return data', () => {
+  //   const service: AppHttpService =
+  //     fixture.debugElement.injector.get(AppHttpService);
+  //   spyOn(service, 'getData').and.callThrough();
+  //   component.ngOnInit();
+  //   expect(service.getData).toHaveBeenCalled();
+  //   expect(component.showDetail.length).toBe(1)
+  // });
 
   // it('getEpisodeDetail function should return data', () => {
   //   const service: AppHttpService =

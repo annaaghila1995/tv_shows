@@ -27,5 +27,8 @@
   height: 180px;
 }
 :host/deep/.card-text{
-  font-size: 14px !important;
+  font-size: 12px;
+  margin-top: -19px;
+  word-wrap: break-word !important;
+
 }
