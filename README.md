@@ -10,4 +10,5 @@ ng serve
 ng build
 
 //Test command
+tools used jasmine karma
 ng test
