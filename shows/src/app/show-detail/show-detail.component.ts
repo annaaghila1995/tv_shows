@@ -28,7 +28,7 @@ export class ShowDetailComponent implements OnInit {
     this.getCastingDetails();
 
   }
-
+/**this function will return the details of the particular show according to the id   */
   getShowData() {
     this.genre = '';
     this.appHttpService
@@ -38,6 +38,8 @@ export class ShowDetailComponent implements OnInit {
         this.genre = this.showDetail.genres.slice(0, this.showDetail.genres.length - 1).join('| ') + "| " + this.showDetail.genres.slice(-1);
       });
   }
+
+  /**this function will return the details of the episodes of that particular show   */
 
   getEpisodeList() {
     this.appHttpService
@@ -51,11 +53,14 @@ export class ShowDetailComponent implements OnInit {
     });
   }
 
+  /**pagination function */
   getPaginatedData(){
     this.paginateData =  this.episodes
      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
 
    }
+
+  /**this function will return the casting details the show   */
 
   getCastingDetails(){
     this.appHttpService
@@ -68,7 +73,7 @@ export class ShowDetailComponent implements OnInit {
     });
   }
 
-  /**to show the entire casting in the series */
+  /** function to show the entire casting list in the series */
   viewMoreCast(){
 
     this.enableViewCastButton = false;

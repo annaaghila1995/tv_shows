@@ -5,20 +5,15 @@ import {
 } from '@angular/common/http/testing';
 import { ShowDetailComponent } from './show-detail.component';
 import { AppHttpService } from './../services/app-http.service';
-import { Observable, of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 // import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpResponse } from '@angular/common/http';
 
 describe('ShowDetailComponent', () => {
   let component: ShowDetailComponent;
   let fixture: ComponentFixture<ShowDetailComponent>;
   let service: AppHttpService;
-  let route: ActivatedRoute;
 
-  let baseUrl = 'https://api.tvmaze.com/shows/1';
   let show = {
     id: 1,
     url: 'https://www.tvmaze.com/shows/1/under-the-dome',
@@ -87,7 +82,6 @@ describe('ShowDetailComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ShowDetailComponent);
-    route = TestBed.inject(ActivatedRoute);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -98,7 +92,7 @@ describe('ShowDetailComponent', () => {
   //   spyOn(restService, 'getData').and.returnValue(of(show));
 
   //   component.getShowData();
-  //   expect(show.name).toEqual('Under the Dome');
+  //   expect(show.name).toEqual(component.showDetail.name);
   // });
 
 });

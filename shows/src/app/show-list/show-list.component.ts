@@ -101,14 +101,16 @@ export class ShowListComponent implements OnInit {
     this.router.navigate(['show/' + id]);
   }
 
-   /**get api call with query parameters */
+   /**get api call with query parameters for searching */
   searchResult(event: any) {
     if (event.target.value) {
 
       this.appHttpService
         .getData(environment.SEARCH_SHOW_API + '?q=' + event.target.value)
         .subscribe((data: any) => {
+          /**enabling the searching data div */
           this.enableFilterData = true;
+
           if(data.length){
             this.searchShows = data;
           } else {
