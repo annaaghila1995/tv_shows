@@ -62,11 +62,13 @@ export class ShowDetailComponent implements OnInit {
     .getData(environment.SHOWS_API +'/' + this.routeParam.snapshot.params['id'] +'/cast')
     .subscribe((data: any) => {
       this.castDetail = data;
+      /**initially it will show only 5 casting */
       this.initial_castDetail = data.slice(0, 5);
 
     });
   }
 
+  /**to show the entire casting in the series */
   viewMoreCast(){
 
     this.enableViewCastButton = false;

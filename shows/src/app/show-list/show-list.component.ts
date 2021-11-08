@@ -104,7 +104,6 @@ export class ShowListComponent implements OnInit {
    /**get api call with query parameters */
   searchResult(event: any) {
     if (event.target.value) {
-      console.log(event.target.value);
 
       this.appHttpService
         .getData(environment.SEARCH_SHOW_API + '?q=' + event.target.value)
