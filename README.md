@@ -9,5 +9,5 @@ ng serve
 // Build command 
 ng build
 
-//Test command
-ng test
+//Testing tool is jasmine and karma,
+ command: ng test
