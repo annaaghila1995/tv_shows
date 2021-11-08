@@ -1,6 +1,7 @@
 **Application**
 
 This is a simple application to show the tv-shows details based on genres like drama, comedy, family, romance etc..
+By clicking on each tv-shows it will take to page which contains all the details of that tv-show like episodes, casting etc.. 
 
 **Steps to run the application**
 
